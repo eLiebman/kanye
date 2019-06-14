@@ -65,7 +65,7 @@ export default function App() {
     return (
         <div className="App">
             
-            <h1 className="mx-auto text-center display-4 my-5 text-gothic">Kanye Says:</h1>
+            <h1 className="mx-auto text-center display-4 my-5 text-gothic">Kanye Said:</h1>
             
             <OverlayTrigger
                 key={"sort-by-shortest"}
@@ -116,11 +116,13 @@ export default function App() {
                 likeQuote={ likeQuote }
                 likedQuotes={likedQuotes}
                 />
-            {showLiked
-                ?null
-                :<Button block size="large" className="mb-5" onClick={refreshQuotes}>
+            {!showLiked
+                ?<Button block size="large" className="mb-5" onClick={refreshQuotes}>
                     <p className="lead my-2">Refresh Quotes</p>
                 </Button>
+                :likedQuotes.length === 0
+                ?<h2 className="display-4 text-center">Go back and like some quotes!</h2>
+                :null
             }
         </div>
     );
