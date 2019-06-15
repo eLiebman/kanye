@@ -18,13 +18,10 @@ const Quote = ({ quote, likeQuote, liked, index }) => {
                     overlay={
                         <Tooltip id={`save-${index}`}>
                             {liked?"Saved":"Save"}
-                    </Tooltip>
+                        </Tooltip>
                     }
                 >
-                    <span 
-                        className="float-right like-button my-auto p-4"
-                        onClick={() => likeQuote(quote)}
-                        >
+                    <span className="float-right like-button my-auto p-4" onClick={() => likeQuote(quote)} >
                         <Octicon icon={Heart} size="medium" className={liked ? "like-button-liked" : "like-button-not-liked"} />
                     </span>
                 </OverlayTrigger>
