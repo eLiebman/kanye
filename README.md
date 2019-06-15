@@ -2,7 +2,7 @@
 Here's a simple app that fetches and displays Kanye West Quotes from the **kanye.rest** api. Users can refresh the list, 'like' and display their favorite quotes, and sort quotes by length, ascending or descending.
 
 ## Running the App Locally
-To run the app locally, clone or download the repo from
+To run the app locally, you'll need `node` and `npm`installed. Clone or download the repo from
 https://github.com/elgincheese/kanye.git
 
 Navigate to the root directory, **kanye-master**
