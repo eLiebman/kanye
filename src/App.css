@@ -3,7 +3,7 @@
 */
 
 .App {
-  width: 75%;
+  width: 90%;
   margin: auto;
 }
 
@@ -37,6 +37,7 @@
 .like-button:hover {
   transform: scale(1.1);
   transition: 20ms;
+  cursor: pointer;
 }
 
 .like-button:focus {
@@ -67,4 +68,11 @@
 
 .like-button-not-liked:focus {
   opacity: .5;
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .App {
+    width: 75%;
+  }
 }

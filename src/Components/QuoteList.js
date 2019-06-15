@@ -11,6 +11,7 @@ const QuoteList = ({ likeQuote, quotes, likedQuotes }) => {
                                 quote={quote}
                                 likeQuote={likeQuote}
                                 key={index}
+                                index={index}
                                 liked={likedQuotes.includes(quote)}
                                 />
                 })}

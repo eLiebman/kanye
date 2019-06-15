@@ -76,7 +76,7 @@ export default function App() {
                     </Tooltip>
                 }
             >
-                <span onClick={() => sortQuotes(1)} className="sort-arrow p-2 mb-2">
+                <span onClick={() => sortQuotes(1)} className="sort-arrow p-2 m-1">
                     <Octicon icon={iconsByName['chevron-up']} size="medium" className="sort-arrow" />
                 </span>    
             </OverlayTrigger>
@@ -90,7 +90,7 @@ export default function App() {
                     </Tooltip>
                 }
             >
-                <span onClick={() => sortQuotes(0)} className="sort-arrow p-2 mb-2">
+                <span onClick={() => sortQuotes(0)} className="sort-arrow p-2 m-1">
                     <Octicon icon={iconsByName['chevron-down']} size="medium" className="sort-arrow" />
                 </span>
             </OverlayTrigger>
