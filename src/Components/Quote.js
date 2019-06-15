@@ -17,7 +17,7 @@ const Quote = ({ quote, likeQuote, liked, key }) => {
                     placement={"right"}
                     overlay={
                         <Tooltip id={`save-${key}`}>
-                            {liked?"Un-Save":"Save"}
+                            {liked?"Saved":"Save"}
                     </Tooltip>
                     }
                 >
