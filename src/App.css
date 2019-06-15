@@ -62,14 +62,6 @@
   transition-duration: 7ms;
 }
 
-.like-button-liked:focus {
-  opacity: .9;
-}
-
-.like-button-not-liked:focus {
-  opacity: .5;
-}
-
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .App {
