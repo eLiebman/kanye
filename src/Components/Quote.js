@@ -21,7 +21,11 @@ const Quote = ({ quote, likeQuote, liked, index }) => {
                     </Tooltip>
                     }
                 >
-                    <span className="float-right like-button my-auto p-4" onClick={() => likeQuote(quote)}>
+                    <span 
+                        className="float-right like-button my-auto p-4"
+                        onClick={() => likeQuote(quote)}
+                        onTouchStart={() => likeQuote(quote)}
+                        >
                         <Octicon icon={Heart} size="medium" className={liked ? "like-button-liked" : "like-button-not-liked"} />
                     </span>
                 </OverlayTrigger>
