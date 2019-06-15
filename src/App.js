@@ -65,7 +65,7 @@ export default function App() {
     return (
         <div className="App">
             
-            <h1 className="mx-auto text-center display-4 my-5 text-gothic">Kanye Said:</h1>
+            <h1 className="mx-auto text-center display-4 my-5 text-gothic">Kanye Said What?</h1>
             
             <OverlayTrigger
                 key={"sort-by-shortest"}
@@ -94,8 +94,6 @@ export default function App() {
                     <Octicon icon={iconsByName['chevron-down']} size="medium" className="sort-arrow" />
                 </span>
             </OverlayTrigger>
-
-            
 
             <OverlayTrigger
                 key={"favorites"}
