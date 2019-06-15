@@ -2,9 +2,9 @@ import React from 'react';
 import Quote from './Quote';
 import Table from 'react-bootstrap/Table';
 
-const QuoteList = ({ likeQuote, quotes, likedQuotes }) => {
+const QuoteList = ({ likeQuote, quotes, likedQuotes, touchScreen }) => {
     return (
-        <Table striped border>
+        <Table striped hover>
             <tbody>
                 { quotes.map( (quote, index) => {
                     return <Quote
@@ -13,6 +13,7 @@ const QuoteList = ({ likeQuote, quotes, likedQuotes }) => {
                                 key={index}
                                 index={index}
                                 liked={likedQuotes.includes(quote)}
+                                touchScreen={touchScreen}
                                 />
                 })}
             </tbody>

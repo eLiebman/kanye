@@ -2,15 +2,21 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import QuoteList from './Components/QuoteList';
-import Octicon, {iconsByName} from '@primer/octicons-react';
 import Button from 'react-bootstrap/Button';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import Nav from './Components/Nav'
 
 export default function App() {
     const [showLiked, setShowLiked] = useState(false);
     const [likedQuotes, setLikedQuotes] = useState([]);
     const [quotes, setQuotes] = useState([]);
+
+    // This code allows us to see if the user is on a touchscreen
+    // So we can avoid using tooltips on mobile
+    const [touchScreen, setTouchScreen] = useState(false);
+    window.addEventListener('touchstart', function onFirstTouch() {
+        setTouchScreen(true);
+        window.removeEventListener('touchstart', onFirstTouch, false);
+    }, false);
 
     const getQuote = async () =>  {
         return axios.get('https://api.kanye.rest')
@@ -50,9 +56,11 @@ export default function App() {
     }
 
     useEffect(() => {
+        // Get Quotes until there are 10
         if (quotes.length < 10) {
             getQuote()
                 .then(res => {
+                    // Don't add duplicates
                     if (!quotes.includes(res)){
                         setQuotes([...quotes, res]);
                     } else {
@@ -64,55 +72,18 @@ export default function App() {
 
     return (
         <div className="App">
-            
             <h1 className="mx-auto text-center display-4 my-5 text-gothic">Kanye Said What?</h1>
-            
-            <OverlayTrigger
-                key={"sort-by-shortest"}
-                placement={"top"}
-                overlay={
-                    <Tooltip id={`sort-by-shortest`}>
-                        Sort By Shortest
-                    </Tooltip>
-                }
-            >
-                <span onClick={() => sortQuotes(1)} className="sort-arrow p-2 m-1">
-                    <Octicon icon={iconsByName['chevron-up']} size="medium" className="sort-arrow" />
-                </span>    
-            </OverlayTrigger>
-            
-            <OverlayTrigger
-                key={"sort-by-longest"}
-                placement={"top"}
-                overlay={
-                    <Tooltip id={`sort-by-longest`}>
-                        Sort By Longest
-                    </Tooltip>
-                }
-            >
-                <span onClick={() => sortQuotes(0)} className="sort-arrow p-2 m-1">
-                    <Octicon icon={iconsByName['chevron-down']} size="medium" className="sort-arrow" />
-                </span>
-            </OverlayTrigger>
-
-            <OverlayTrigger
-                key={"favorites"}
-                placement={"top"}
-                overlay={
-                    <Tooltip id={`show-liked`}>
-                        {showLiked ? "Show All" : "Favorites"}
-                    </Tooltip>
-                }
-            >
-                <span onClick={() => setShowLiked(!showLiked)} className="like-button p-1 mb-2 mr-4 float-right">
-                    <Octicon icon={iconsByName['heart']} size="medium" className={showLiked ? "like-button-liked" : "like-button-not-liked"} />
-                </span>    
-            </OverlayTrigger>
-            
+            <Nav
+                sortQuotes={sortQuotes}
+                showLiked={showLiked}
+                setShowLiked={setShowLiked}
+                touchScreen={touchScreen}
+                />
             <QuoteList
                 quotes={showLiked?likedQuotes:quotes}
                 likeQuote={ likeQuote }
                 likedQuotes={likedQuotes}
+                touchScreen={touchScreen}
                 />
             {!showLiked
                 ?<Button block size="large" className="mb-5" onClick={refreshQuotes}>
