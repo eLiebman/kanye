@@ -34,16 +34,6 @@
   color: red;
 }
 
-.like-button:hover {
-  transform: scale(1.1);
-  transition: 20ms;
-  cursor: pointer;
-}
-
-.like-button:focus {
-  transform: scale(1);
-}
-
 .like-button-liked {
   opacity: .9;
 }
@@ -52,19 +42,25 @@
   opacity: .5;
 }
 
-.like-button-liked:hover {
-  opacity: .6;
-  transition-duration: 7ms;
-}
-
-.like-button-not-liked:hover {
-  opacity: .8;
-  transition-duration: 7ms;
-}
-
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {
   .App {
     width: 75%;
+  }
+
+  .like-button:hover {
+    transform: scale(1.1);
+    transition: 20ms;
+    cursor: pointer;
+  }
+
+  .like-button-liked:hover {
+    opacity: .6;
+    transition-duration: 7ms;
+  }
+
+  .like-button-not-liked:hover {
+    opacity: .8;
+    transition-duration: 7ms;
   }
 }
