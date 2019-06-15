@@ -24,7 +24,6 @@ const Quote = ({ quote, likeQuote, liked, index }) => {
                     <span 
                         className="float-right like-button my-auto p-4"
                         onClick={() => likeQuote(quote)}
-                        onTouchStart={() => likeQuote(quote)}
                         >
                         <Octicon icon={Heart} size="medium" className={liked ? "like-button-liked" : "like-button-not-liked"} />
                     </span>
