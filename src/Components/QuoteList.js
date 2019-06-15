@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 
 const QuoteList = ({ likeQuote, quotes, likedQuotes }) => {
     return (
-        <Table striped border hover>
+        <Table striped border>
             <tbody>
                 { quotes.map( (quote, index) => {
                     return <Quote
