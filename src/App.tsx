@@ -5,10 +5,10 @@ import QuoteList from './Components/QuoteList';
 import Button from 'react-bootstrap/Button';
 import Nav from './Components/Nav'
 
-export default function App() {
-    const [showLiked, setShowLiked] = useState(false);
-    const [likedQuotes, setLikedQuotes] = useState([]);
-    const [quotes, setQuotes] = useState([]);
+const App: React.FC = () => {
+    const [showLiked, setShowLiked] = useState<boolean>(false);
+    const [likedQuotes, setLikedQuotes] = useState<string[]>([]);
+    const [quotes, setQuotes] = useState<string[]>([]);
 
     // This code allows us to see if the user is on a touchscreen
     // So we can avoid using tooltips on mobile
@@ -23,26 +23,25 @@ export default function App() {
         .then( res => res.data.quote)
     }
 
-    const sortQuotes = direction => {
+    const sortQuotes = (direction: Number) => {
         // Sort only the currently visible quotes (likedQuotes? or all quotes?)
-        let quotesToSort = showLiked?likedQuotes:quotes;
-        let sortedQuotes;
+        let quotesToSort: string[] = showLiked?likedQuotes:quotes;
+        let sortedQuotes: string[] = [];
         // Choose Direction
         if (direction === 1) {
-            sortedQuotes = quotesToSort.sort((a, b) => a.length - b.length);
+            sortedQuotes = quotesToSort.sort((a: string, b: string) => a.length - b.length);
         } else if (direction === 0) {
-            sortedQuotes = quotesToSort.sort((a, b) => b.length - a.length);
+            sortedQuotes = quotesToSort.sort((a: string, b: string) => b.length - a.length);
         }
         // Set the appropriate state with sorted quotes
         if (showLiked) {
             setLikedQuotes([...sortedQuotes]);
         } else {
             setQuotes([...sortedQuotes]);
-        }
-        
+        }   
     }
 
-    const likeQuote = quote => {
+    const likeQuote = (quote: string) => {
         if (likedQuotes.includes(quote)) {
             let updatedLikedQuotes = likedQuotes.filter( q => q !== quote);
             setLikedQuotes(updatedLikedQuotes);
@@ -72,7 +71,9 @@ export default function App() {
 
     return (
         <div className="App">
-            <h1 className="mx-auto text-center display-4 my-5 text-gothic">Kanye Said What?</h1>
+            <h1 className="mx-auto text-center display-4 my-5 text-gothic">
+                Kanye Said What?
+            </h1>
             <Nav
                 sortQuotes={sortQuotes}
                 showLiked={showLiked}
@@ -86,13 +87,20 @@ export default function App() {
                 touchScreen={touchScreen}
                 />
             {!showLiked
-                ?<Button block size="large" className="mb-5" onClick={refreshQuotes}>
+                ? <Button
+                    onClick={refreshQuotes}
+                    block
+                    size="lg"
+                    className="mb-5"
+                    >
                     <p className="lead my-2">Refresh Quotes</p>
-                </Button>
-                :likedQuotes.length === 0
-                ?<h2 className="display-4 text-center">Go back and like some quotes!</h2>
-                :null
+                  </Button>
+                : likedQuotes.length === 0
+                ? <h2 className="display-4 text-center">Go back and like some quotes!</h2>
+                : null
             }
         </div>
     );
 }
+
+export default App;
